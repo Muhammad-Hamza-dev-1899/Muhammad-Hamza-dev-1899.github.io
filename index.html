@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhammad Hamza — Computer Science Student</title>
+  <meta name="description" content="Portfolio of Muhammad Hamza, a Computer Science student at NUST focused on software engineering, databases, AI, machine learning, and application development." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#080b10;
+      --panel:#101522;
+      --panel-2:#0d1220;
+      --text:#edf3ff;
+      --muted:#a9b4ca;
+      --accent:#6cf0c2;
+      --accent-2:#7aa7ff;
+      --line:#243047;
+      --shadow:0 18px 55px rgba(0,0,0,.38);
+      --radius:20px;
+      --max:1120px;
+      --pad:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 560px at 85% -10%, rgba(122,167,255,.22), transparent 65%),
+        radial-gradient(800px 520px at 8% 10%, rgba(108,240,194,.14), transparent 62%),
+        linear-gradient(180deg, #080b10 0%, #0b0f18 45%, #080b10 100%);
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    p{margin:0 0 12px; color:var(--muted)}
+    strong{color:var(--text)}
+
+    header{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:24px 20px 0;
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(8,11,16,.74);
+      backdrop-filter:blur(14px);
+      box-shadow:0 10px 28px rgba(0,0,0,.24);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      font-weight:800;
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+
+    .brand-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 24px rgba(108,240,194,.85);
+    }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:14px;
+      font-size:14px;
+    }
+
+    nav a{color:var(--muted)}
+    nav a:hover{color:var(--text); text-decoration:none}
+
+    .wrap{
+      max-width:var(--max);
+      margin:24px auto 0;
+      padding:0 20px 42px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:22px;
+      align-items:stretch;
+      padding:34px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.02)),
+        rgba(16,21,34,.78);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      right:-110px;
+      bottom:-120px;
+      background:rgba(108,240,194,.13);
+      filter:blur(8px);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 12px;
+      color:var(--accent);
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+    }
+
+    .hero h1{
+      margin:0 0 14px;
+      max-width:760px;
+      font-size:clamp(34px, 7vw, 62px);
+      line-height:1.03;
+      letter-spacing:-1.8px;
+    }
+
+    .hero .lead{
+      max-width:760px;
+      font-size:clamp(16px, 2.5vw, 19px);
+      color:#c6d1e7;
+    }
+
+    .hero-side{
+      position:relative;
+      z-index:1;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:22px;
+      background:rgba(13,18,32,.72);
+    }
+
+    .hero-side h2{margin-top:0}
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:999px;
+      background:rgba(12,18,31,.78);
+      color:#d7e2f5;
+      font-size:14px;
+    }
+
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:12px 16px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:13px;
+      background:#121a2d;
+      color:var(--text);
+      font-weight:700;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      text-decoration:none;
+      border-color:rgba(108,240,194,.45);
+      background:#17223a;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg, var(--accent), #9ef8db);
+      color:#071014;
+      border:none;
+    }
+
+    .section{
+      margin-top:22px;
+    }
+
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .two{grid-template-columns:1fr 1fr}
+    .three{grid-template-columns:repeat(3, 1fr)}
+
+    .card{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)),
+        rgba(16,21,34,.72);
+      box-shadow:0 12px 36px rgba(0,0,0,.25);
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:clamp(22px, 3vw, 28px);
+      letter-spacing:-.5px;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:19px;
+      line-height:1.3;
+    }
+
+    .muted{color:var(--muted)}
+    .mini{font-size:14px; color:var(--muted)}
+
+    .skill-group h3{
+      color:#dfe8fb;
+      font-size:16px;
+      margin-bottom:12px;
+    }
+
+    .skill-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:0;
+      margin:0;
+      list-style:none;
+    }
+
+    .skill-list li{
+      border:1px dashed rgba(255,255,255,.13);
+      border-radius:11px;
+      padding:8px 11px;
+      background:#0f1627;
+      color:#d4def2;
+      font-size:14px;
+    }
+
+    .project{
+      display:grid;
+      gap:14px;
+    }
+
+    .project-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      padding-bottom:14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .project-title h3{margin-bottom:4px}
+
+    .badge{
+      flex:0 0 auto;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(108,240,194,.12);
+      border:1px solid rgba(108,240,194,.3);
+      color:var(--accent);
+      font-weight:700;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+
+    .star-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+    }
+
+    .star-box{
+      border:1px solid rgba(255,255,255,.075);
+      border-radius:14px;
+      padding:14px;
+      background:rgba(9,14,25,.58);
+    }
+
+    .star-box span{
+      display:block;
+      color:var(--accent-2);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.45px;
+      margin-bottom:6px;
+    }
+
+    .star-box p{font-size:14px; margin:0}
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .contact-links{
+      display:grid;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .contact-links a,
+    .contact-links span{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:13px;
+      background:#0f1627;
+      color:#dce7fa;
+      word-break:break-word;
+    }
+
+    .contact-links a:hover{
+      text-decoration:none;
+      border-color:rgba(108,240,194,.42);
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:10px 20px 46px;
+      font-size:14px;
+    }
+
+    @media (max-width:960px){
+      .hero,
+      .two,
+      .three,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .star-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width:720px){
+      header{padding-top:14px}
+      .nav{
+        align-items:flex-start;
+        border-radius:20px;
+        flex-direction:column;
+      }
+      nav{
+        justify-content:flex-start;
+      }
+      .wrap{padding:0 14px 34px}
+      .hero{padding:24px 18px}
+      .card{padding:18px}
+      .project-head{flex-direction:column}
+      .star-grid{grid-template-columns:1fr}
+      .cta .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav" aria-label="Main navigation">
+      <div class="brand"><span class="brand-dot" aria-hidden="true"></span> Muhammad Hamza</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="home">
+      <div>
+        <p class="eyebrow">Computer Science Student · Aspiring Software Engineer</p>
+        <h1>Building practical software with code, data, and AI.</h1>
+        <p class="lead">I am a Computer Science student at the National University of Sciences and Technology, passionate about building practical software solutions with code, data, and AI. I turn ideas into working applications by combining strong programming fundamentals with curiosity, experimentation, and hands-on project development.</p>
+        <div class="chips" aria-label="Highlights">
+          <span class="chip">Software Development</span>
+          <span class="chip">Databases</span>
+          <span class="chip">AI &amp; Machine Learning</span>
+          <span class="chip">GUI Applications</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact Me</a>
+          <a class="btn" href="https://github.com/Muhammad-Hamza-dev-1899" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="http://www.linkedin.com/in/muhammad-hamza-a1b65938b" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <h2>Currently</h2>
+        <p><strong>BS Computer Science Student</strong></p>
+        <p>National University of Sciences and Technology</p>
+        <p class="mini">Third semester · Expected graduation: 2029</p>
+        <div class="chips">
+          <span class="chip">C++</span>
+          <span class="chip">Python</span>
+          <span class="chip">Java</span>
+          <span class="chip">SQL</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section grid two" id="about">
+      <div class="card">
+        <h2>About Me</h2>
+        <p>I am a third-semester BS Computer Science student at NUST, expected to graduate in 2029. My academic journey is focused on software development, artificial intelligence, machine learning, databases, and object-oriented programming.</p>
+        <p>I enjoy exploring how AI is being used in the real world and then challenging myself to implement those ideas through code. Whether it is building GUI-based applications, designing databases, creating offline navigation tools, or experimenting with machine learning concepts, I focus on learning by doing.</p>
+        <p>Alongside my university coursework, I have strengthened my foundations through online learning, including CS50: Introduction to Computer Science by Harvard, a Stanford statistics/math course on Coursera, Python for Data Science by freeCodeCamp, Kaggle’s Machine Learning mini-course, and the ongoing Supervised Machine Learning: Regression and Classification course by DeepLearning.AI.</p>
+        <p>My goal is to grow into a strong software engineer who can contribute to enterprise teams by building reliable, scalable, and user-focused technology.</p>
+      </div>
+
+      <div class="card">
+        <h2>Focus Areas</h2>
+        <div class="chips">
+          <span class="chip">Application Development</span>
+          <span class="chip">Object-Oriented Programming</span>
+          <span class="chip">Database Design</span>
+          <span class="chip">Machine Learning Fundamentals</span>
+          <span class="chip">Mathematical Visualization</span>
+          <span class="chip">Digital Logic</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="card">
+        <h2>Skills</h2>
+        <div class="grid three">
+          <div class="skill-group">
+            <h3>Programming Languages</h3>
+            <ul class="skill-list">
+              <li>C++</li>
+              <li>Python</li>
+              <li>Java</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Databases</h3>
+            <ul class="skill-list">
+              <li>SQLite</li>
+              <li>MySQL</li>
+              <li>NoSQL fundamentals</li>
+              <li>Database schema design</li>
+              <li>Database integration with applications</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Software Development</h3>
+            <ul class="skill-list">
+              <li>Object-Oriented Programming</li>
+              <li>GUI application development</li>
+              <li>Data structures fundamentals</li>
+              <li>Problem-solving</li>
+              <li>Version control with Git and GitHub</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>AI, Data, and Mathematics</h3>
+            <ul class="skill-list">
+              <li>Machine learning fundamentals</li>
+              <li>Model training basics</li>
+              <li>Linear Algebra</li>
+              <li>Statistics fundamentals</li>
+              <li>NumPy</li>
+              <li>Pandas</li>
+              <li>Matplotlib</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Tools and Platforms</h3>
+            <ul class="skill-list">
+              <li>Microsoft Visual Studio</li>
+              <li>Visual Studio Code</li>
+              <li>IntelliJ IDEA</li>
+              <li>SQLite Browser</li>
+              <li>JavaFX</li>
+              <li>Java Swing</li>
+              <li>SFML</li>
+              <li>Kaggle</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Digital Logic and Hardware Tools</h3>
+            <ul class="skill-list">
+              <li>Proteus</li>
+              <li>ModelSim</li>
+              <li>Breadboard circuit design</li>
+              <li>Basic digital circuit simulation and hardware implementation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid" id="projects">
+      <div class="card">
+        <h2>Projects</h2>
+        <p class="muted">Selected academic and practice projects showing application development, databases, GUI programming, and hardware-level digital logic.</p>
+      </div>
+
+      <article class="card project">
+        <div class="project-head">
+          <div class="project-title">
+            <h3>Graphing Calculator — FOCP Project</h3>
+            <p class="mini">C++ · SFML · Microsoft Visual Studio</p>
+          </div>
+          <span class="badge">GUI Project</span>
+        </div>
+        <div class="star-grid">
+          <div class="star-box"><span>Situation</span><p>During my first semester, I was introduced to graphing in Calculus for the first time and wanted to understand the concept more deeply through software.</p></div>
+          <div class="star-box"><span>Task</span><p>I decided to build my own graphing calculator in C++ as my first GUI-based programming project.</p></div>
+          <div class="star-box"><span>Action</span><p>I researched graphing concepts through books and YouTube, learned how to use SFML, and developed the application using C++ in Microsoft Visual Studio. I focused on creating a functional interface that could visually represent mathematical graphs.</p></div>
+          <div class="star-box"><span>Result</span><p>The project helped me move beyond basic console programming and introduced me to GUI development, mathematical visualization, and independent technical research. It became my first complete software project with a visual user interface.</p></div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-head">
+          <div class="project-title">
+            <h3>Clixky — Database Systems Project</h3>
+            <p class="mini">Java · SQLite · IntelliJ IDEA · GitHub</p>
+          </div>
+          <span class="badge">Database</span>
+        </div>
+        <div class="star-grid">
+          <div class="star-box"><span>Situation</span><p>Social media platforms are a major part of everyday digital life, and our team wanted to understand how such applications manage users, posts, and interactions.</p></div>
+          <div class="star-box"><span>Task</span><p>We designed and developed Clixky, a Reddit-inspired desktop application, as our Database Systems project.</p></div>
+          <div class="star-box"><span>Action</span><p>I worked as the SQLite schema designer, helped decide the technology stack, improved the GUI, and integrated the SQLite database with the Java-based interface. We used GitHub for collaboration, IntelliJ IDEA for development, and SQLite Browser for database management.</p></div>
+          <div class="star-box"><span>Result</span><p>The project gave me hands-on experience in database design, application-database integration, team collaboration, and building a structured software product from concept to implementation.</p></div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-head">
+          <div class="project-title">
+            <h3>NUST Navigator — Smart Campus Navigator</h3>
+            <p class="mini">Java · JavaFX · IntelliJ IDEA</p>
+          </div>
+          <span class="badge">Campus App</span>
+        </div>
+        <div class="star-grid">
+          <div class="star-box"><span>Situation</span><p>NUST is a large university campus, and students often rely on Google Maps or guidance from others to find routes and campus locations.</p></div>
+          <div class="star-box"><span>Task</span><p>I created an offline Java application that could help users navigate between different points inside NUST and access shuttle-related information.</p></div>
+          <div class="star-box"><span>Action</span><p>I built the project individually using Java, JavaFX, and IntelliJ IDEA. The application was designed around a complete campus image and aimed to provide route information from one location to another without needing an internet connection.</p></div>
+          <div class="star-box"><span>Result</span><p>The project strengthened my object-oriented programming skills and helped me understand how software can solve real problems in a local environment. It also improved my ability to design practical, user-focused applications independently.</p></div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-head">
+          <div class="project-title">
+            <h3>Stopwatch Application</h3>
+            <p class="mini">Java · Java Swing · VS Code</p>
+          </div>
+          <span class="badge">Practice</span>
+        </div>
+        <div class="star-grid">
+          <div class="star-box"><span>Situation</span><p>I wanted to improve my understanding of Java Swing and learn how buttons, events, and GUI components work in desktop applications.</p></div>
+          <div class="star-box"><span>Task</span><p>I built a simple stopwatch application as a focused practice project.</p></div>
+          <div class="star-box"><span>Action</span><p>Using Java, Java Swing, and VS Code, I implemented the stopwatch interface and button-based functionality for starting, stopping, and managing time.</p></div>
+          <div class="star-box"><span>Result</span><p>This project improved my understanding of event-driven programming, GUI controls, and Java desktop application structure.</p></div>
+        </div>
+      </article>
+
+      <article class="card project">
+        <div class="project-head">
+          <div class="project-title">
+            <h3>4-Digit Password Checker / Breaker Circuit — Digital Logic Design Project</h3>
+            <p class="mini">Proteus · ModelSim · Breadboard Hardware</p>
+          </div>
+          <span class="badge">Hardware</span>
+        </div>
+        <div class="star-grid">
+          <div class="star-box"><span>Situation</span><p>Digital locks are commonly used in security systems, and our team wanted to understand how such systems work at the circuit level.</p></div>
+          <div class="star-box"><span>Task</span><p>We built a 4-digit password checker and breaker circuit using digital logic concepts.</p></div>
+          <div class="star-box"><span>Action</span><p>My contributions included designing simulations in Proteus and ModelSim, planning the project timeline, and assisting with hardware patching using breadboards, LEDs, jumper wires, resistors, switches, a relay, and a 5V power supply.</p></div>
+          <div class="star-box"><span>Result</span><p>The project helped me connect digital logic theory with real hardware implementation. It strengthened my understanding of circuit design, simulation, teamwork, and practical debugging.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section contact-grid" id="contact">
+      <div class="card">
+        <h2>Contact</h2>
+        <p>I am actively looking for enterprise internship opportunities where I can contribute, learn from experienced engineers, and grow as a software developer. I am especially interested in roles related to software engineering, databases, AI, machine learning, and application development.</p>
+        <p>Recruiters, hiring managers, and technical teams are welcome to connect with me.</p>
+      </div>
+
+      <div class="card">
+        <h2>Connect</h2>
+        <div class="contact-links">
+          <a href="http://www.linkedin.com/in/muhammad-hamza-a1b65938b" target="_blank" rel="noopener"><strong>LinkedIn</strong><span>Profile</span></a>
+          <a href="https://github.com/Muhammad-Hamza-dev-1899" target="_blank" rel="noopener"><strong>GitHub</strong><span>Projects</span></a>
+          <a href="https://www.instagram.com/muhammad.hamza7771/" target="_blank" rel="noopener"><strong>Instagram</strong><span>@muhammad.hamza7771</span></a>
+          <a href="mailto:mhamza.bscs25seecs@seecs.edu.pk"><strong>Email</strong><span>mhamza.bscs25seecs@seecs.edu.pk</span></a>
+          <a href="tel:+923306661899"><strong>Phone</strong><span>+92 330 6661899</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Muhammad Hamza · Portfolio Website
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
